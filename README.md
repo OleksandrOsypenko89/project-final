@@ -1,51 +1,63 @@
-## [REST API](http://localhost:8080/doc)
+# JIRA RUSH
 
-## Концепция:
+I was given a tutorial assignment to fix bugs in the finished code, make changes and add functionality according to the terms.
 
-- Spring Modulith
-    - [Spring Modulith: достигли ли мы зрелости модульности](https://habr.com/ru/post/701984/)
-    - [Introducing Spring Modulith](https://spring.io/blog/2022/10/21/introducing-spring-modulith)
-    - [Spring Modulith - Reference documentation](https://docs.spring.io/spring-modulith/docs/current-SNAPSHOT/reference/html/)
+- What I did in this project.
+  - Deleted social media: vk, yandex.
+  - Output sensitive information to a separate property file:
+      - login
+      - database password
+      - identifiers for OAuth registration/authorization
+      - mail settings
+  - Reworked the testing so that all tests are executed in the test container.
+  - Wrote tests for all public methods of the _ProfileRestController_ controller.
+  - Added new functionality: adding tags to a task (REST API + implementation on the service).
+  - Wrote a Dockerfile for the primary server.
+  - Write a docker-compose file to run the server container along with the database and nginx.
+  - Added localization for _mails_ email templates and _index.html_ start page.
 
+### Stack of technologies used in the project
+
+- Spring Boot
+- Spring JPA
+- Hibernate
+- PostgreSQL
+- Liquibase
+- Spring Security
+- Spring MVC
+- Thymeleaf
+- jQuery
+- Swagger
+- Caffeine
+- Mapstruct
+- Spring Test
+- JUnit
+- Test Container
+- Docker
+
+### Run the project
+
+- Clone the project to your computer.
+- Start the database server locally (PostgreSQL). I recommend doing this through docker.
+
+Relevant command:
+```
+  docker run --name JiraRuch -p 5432:5432 -e POSTGRES_USER=jira -e POSTGRES_PASSWORD=JiraRush -d postgres
+```
+
+- Build the application: `mvn clean install`.
+- Start the Spring Boot application `JiraRushApplication`
+- To “see” how the application works you need to execute the `data.sql` script from `resources/data4dev`
+
+Connecting to DB
 ```
   url: jdbc:postgresql://localhost:5432/jira
   username: jira
   password: JiraRush
 ```
 
-- Есть 2 общие таблицы, на которых не fk
-    - _Reference_ - справочник. Связь делаем по _code_ (по id нельзя, тк id привязано к окружению-конкретной базе)
-    - _UserBelong_ - привязка юзеров с типом (owner, lead, ...) к объекту (таска, проект, спринт, ...). FK вручную будем
-      проверять
-
-## Аналоги
-
-- https://java-source.net/open-source/issue-trackers
-
-## Тестирование
-
-- https://habr.com/ru/articles/259055/
-
-Список выполненных задач:
-...
-
-1
-
-2
-
-3
-
-4
-
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
+### To log in without registration, you can use one of the following accounts:
+| Role     | ADMIN           | USER            |
+|----------|-----------------|-----------------|
+| Login    | admin@gmail.com | user@gmail.com  |
+| Password | admin           | password        |
