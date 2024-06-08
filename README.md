@@ -44,17 +44,16 @@ Relevant command:
 ```
   docker run --name JiraRuch -p 5432:5432 -e POSTGRES_USER=jira -e POSTGRES_PASSWORD=JiraRush -d postgres
 ```
-
-- Build the application: `mvn clean install`.
-- Start the Spring Boot application `JiraRushApplication`
-- To “see” how the application works you need to execute the `data.sql` script from `resources/data4dev`
-
 Connecting to DB
 ```
   url: jdbc:postgresql://localhost:5432/jira
   username: jira
   password: JiraRush
 ```
+
+- Build the application: `mvn clean install`.
+- Start the Spring Boot application `JiraRushApplication`
+- To “see” how the application works you need to execute the `data.sql` script from `resources/data4dev`
 
 ### To log in without registration, you can use one of the following accounts:
 | Role     | ADMIN           | USER            |
